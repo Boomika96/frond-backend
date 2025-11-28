@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  frontend:
+    build:
+      context: frontend/
+    image: frend
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - three-tire-net
+
+  backend:
+    build:
+      context: backend/
+    image: vcend
+    container_name: backend
+    environment:
+      MONGO_URL: mongodb://mongo:27017/mydb
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+    networks:
+      - three-tire-net
+
+  mongo:
+    image: mongo:6.0
+    container_name: mongo
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - three-tire-net
+
+networks:
+  three-tire-net
+
+volumes:
+  mongo-data:
