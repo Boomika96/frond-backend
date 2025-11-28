@@ -16,7 +16,7 @@ services:
   backend:
     build:
       context: backend/
-    image: vcend
+    image: bcend
     container_name: backend
     environment:
       MONGO_URL: mongodb://mongo:27017/mydb
@@ -36,7 +36,9 @@ services:
       - three-tire-net
 
 networks:
-  three-tire-net
+  three-tire-net:
+    name: three-tier-net
+    driver: bridge
 
 volumes:
   mongo-data:
