@@ -3,8 +3,7 @@ services:
   frontend: 
     container_name: frontend
     image: boomika69/frend:latest   # from Docker Hub
-    ports: 
-      - "80:80"   # internal port 80 mapped to 8080
+  # internal port 80 mapped to 8080
     depends_on:
       - backend
       - mongo
